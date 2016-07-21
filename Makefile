@@ -33,7 +33,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = CWebSocketServer1.0.0
-DISTDIR = /home/cc/qt_projects/CWebSocketServer/.tmp/CWebSocketServer1.0.0
+DISTDIR = /home/cc/qt_projects/CWebSocketServer/obj/CWebSocketServer1.0.0
 LINK          = g++
 LFLAGS        = 
 LIBS          = $(SUBLIBS)  
@@ -44,16 +44,16 @@ STRIP         = strip
 
 ####### Output directory
 
-OBJECTS_DIR   = ./
+OBJECTS_DIR   = obj/
 
 ####### Files
 
 SOURCES       = main.cpp \
 		cserver.cpp \
 		clog.cpp 
-OBJECTS       = main.o \
-		cserver.o \
-		clog.o
+OBJECTS       = obj/main.o \
+		obj/cserver.o \
+		obj/clog.o
 DIST          = ../../Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/common/unix.conf \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/common/linux.conf \
@@ -541,14 +541,15 @@ compiler_clean:
 
 ####### Compile
 
-main.o: main.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
+obj/main.o: main.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/main.o main.cpp
 
-cserver.o: cserver.cpp cserver.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cserver.o cserver.cpp
+obj/cserver.o: cserver.cpp cserver.h \
+		clog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/cserver.o cserver.cpp
 
-clog.o: clog.cpp clog.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o clog.o clog.cpp
+obj/clog.o: clog.cpp clog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/clog.o clog.cpp
 
 ####### Install
 
