@@ -48,8 +48,12 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = main.cpp 
-OBJECTS       = main.o
+SOURCES       = main.cpp \
+		cserver.cpp \
+		clog.cpp 
+OBJECTS       = main.o \
+		cserver.o \
+		clog.o
 DIST          = ../../Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/common/unix.conf \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/common/linux.conf \
@@ -181,6 +185,7 @@ DIST          = ../../Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/features/qt_config.prf \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/features/default_pre.prf \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/features/resolve_config.prf \
@@ -191,7 +196,10 @@ DIST          = ../../Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/features/exceptions.prf \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/features/yacc.prf \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/features/lex.prf \
-		CWebSocketServer.pro  main.cpp
+		CWebSocketServer.pro cserver.h \
+		clog.h main.cpp \
+		cserver.cpp \
+		clog.cpp
 QMAKE_TARGET  = CWebSocketServer
 DESTDIR       = 
 TARGET        = CWebSocketServer
@@ -334,6 +342,7 @@ Makefile: CWebSocketServer.pro ../../Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++/qmake.
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/features/qt_config.prf \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/features/default_pre.prf \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/features/resolve_config.prf \
@@ -477,6 +486,7 @@ Makefile: CWebSocketServer.pro ../../Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++/qmake.
 ../../Qt5.7.0/5.7/gcc_64/mkspecs/features/qt_config.prf:
 ../../Qt5.7.0/5.7/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../Qt5.7.0/5.7/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../Qt5.7.0/5.7/gcc_64/mkspecs/features/default_pre.prf:
 ../../Qt5.7.0/5.7/gcc_64/mkspecs/features/resolve_config.prf:
@@ -533,6 +543,12 @@ compiler_clean:
 
 main.o: main.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
+
+cserver.o: cserver.cpp cserver.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o cserver.o cserver.cpp
+
+clog.o: clog.cpp clog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o clog.o clog.cpp
 
 ####### Install
 
