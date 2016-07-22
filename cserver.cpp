@@ -38,6 +38,9 @@ void CServer::init()
     servaddr.sin_family = AF_INET;
     servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
     servaddr.sin_port = htons(SERVPORT);
+    int on = 1;
+    if((setsockopt(_listenfd, SOL_SOCKET,SO_REUSEADDR, &on, sizeof(on))) <0)
+        _log->log_exit(2, "setsockopt error: %s", strerror(errno));
     if (bind(_listenfd, (struct sockaddr *)&servaddr, sizeof(servaddr)) < 0)
         _log->log_exit(2, "bind error: %s", strerror(errno));
     if (listen(_listenfd, 5) < 0)
@@ -76,25 +79,24 @@ void CServer::do_epoll()
             } else {
                 ret = _request.process(fd, buf, MAXLINE, _b_connmap[fd]);
                 if (ret < 0) {
-                    delete_event(fd);
                     _log->log_msg(1, "read error on %d: %s", fd, strerror(errno));
-                } else if (ret == 0) {
                     delete_event(fd);
+                } else if (ret == 0) {
                     _log->log_msg(0, "%d closed", fd);
+                    delete_event(fd);
                 } else {
                     if (_b_connmap[fd]) {
-
+                        //                    for (pos = _fdlist.begin(); pos != _fdlist.end(); ++i) {
+                        //                        if (*pos != fd) {
+                        //                            ret = _response.process(*pos, buf, ret);
+                        //                        }
+                        //                    }
                     } else {
-
-                        _b_connmap[newfd] = true;
+                        _b_connmap[fd] = true;
+                        _response.handshark(fd, buf, ret);
                     }
+
                     write(STDOUT_FILENO, buf, ret);
-                    _log->log_msg(0, buf);
-//                    for (pos = _fdlist.begin(); pos != _fdlist.end(); ++i) {
-//                        if (*pos != fd) {
-//                            ret = _response.process(*pos, buf, ret);
-//                        }
-//                    }
                 }
             }
         }

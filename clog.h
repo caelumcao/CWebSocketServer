@@ -1,6 +1,8 @@
 #ifndef CLOG_H
 #define CLOG_H
 
+#include <stdarg.h>
+
 class CLog
 {
 public:
@@ -9,6 +11,9 @@ public:
     void log_exit(int priority, const char *fmt, ...);
 
     static CLog *log();
+
+private:
+    void log_base(int priority, const char *fmt, va_list ap);
 
 private:
     enum { BUFSIZE = 1024 };

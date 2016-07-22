@@ -1,8 +1,8 @@
 #include "crequest.h"
 #include <unistd.h>
 #include <errno.h>
-#include <string>
-#include <sstream>
+#include <string.h>
+
 CRequest::CRequest()
 {
 
@@ -10,24 +10,36 @@ CRequest::CRequest()
 
 int CRequest::process(int fd, char *buf, unsigned int maxsize, bool b_conn)
 {
+    bzero(buf, maxsize);
     int nreads;
-    while (true) {
-        nreads = read(fd, buf, maxsize);
-        if (nreads < 0 && errno == EINTR)
-            continue;
-        else
-            break;
-    }
 
     if (b_conn) {
-
+        while (true) {
+            nreads = read(fd, buf, maxsize);
+            if (nreads < 0 && errno == EINTR)
+                continue;
+            else
+                break;
+        }
+        return nreads;
     } else {
-
+        while (*buf != '\r') {
+            if ((nreads = readline(fd, buf, maxsize)) <= 0)
+                return nreads;
+            if (strncmp(buf, KEY_STRING, strlen(KEY_STRING)) == 0) {
+                int pos = strlen(KEY_STRING) + 2;
+                int len = nreads - pos - 2;
+                strncpy(buf, buf + pos, len);
+                buf[len] = '\0';
+                return len;
+            }
+        }
+        return -1;
     }
-    return nreads;
+
 }
 
-ssize_t CRequest::my_read(int fd, char *ptr)
+int CRequest::my_read(int fd, char *ptr)
 {
     static int read_cnt = 0;
     static char *read_ptr;
@@ -51,11 +63,11 @@ ssize_t CRequest::my_read(int fd, char *ptr)
     return(1);
 }
 
-ssize_t CRequest::readline(int fd, void *vptr, size_t maxlen)
+int CRequest::readline(int fd, void *vptr, unsigned int maxlen)
 {
     int n, rc;
     char c, *ptr;
-    ptr = vptr;
+    ptr = (char *)vptr;
     for (n = 1; n < maxlen; ++n) {
         if ((rc = my_read(fd, &c)) == 1) {
             *ptr++ = c;
