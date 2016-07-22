@@ -1,0 +1,97 @@
+[0][2016-07-22 15:05:05]4 added
+[0][2016-07-22 15:05:05]start listening
+[0][2016-07-22 15:05:22]6 added
+[0][2016-07-22 15:05:22]GET / HTTP/1.1
+Host: 127.0.0.1:9999
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade: websocket
+Origin: file://
+Sec-WebSocket-Version: 13
+User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: zh-CN,zh;q=0.8
+Sec-WebSocket-Key: dKSyBSd7w/88qrt+KUsA+w==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+
+
+[0][2016-07-22 15:15:28]4 added
+[0][2016-07-22 15:15:28]start listening
+[0][2016-07-22 15:19:19]6 added
+[0][2016-07-22 15:19:19]GET / HTTP/1.1
+Host: 192.168.132.128:8080
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade: websocket
+Origin: file://
+Sec-WebSocket-Version: 13
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.6
+Sec-WebSocket-Key: w3QD4Opb5OmXaXCh5rnDVA==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+
+
+[0][2016-07-22 15:25:12]4 added
+[0][2016-07-22 15:25:12]start listening
+[0][2016-07-22 15:25:41]6 added
+[0][2016-07-22 15:25:41]GET / HTTP/1.1
+Host: 192.168.132.128:9999
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade: websocket
+Origin: file://
+Sec-WebSocket-Version: 13
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.6
+Sec-WebSocket-Key: CKY7eyaL2LTqg6pHxhAGvQ==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+
+
+[0][2016-07-22 15:29:41]6 closed
+[0][2016-07-22 16:45:08]4 added
+[0][2016-07-22 16:45:08]start listening
+[0][2016-07-22 16:45:20]6 added
+[0][2016-07-22 16:46:09]GET / HTTP/1.1
+Host: 192.168.132.128:9999
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade: websocket
+Origin: file://
+Sec-WebSocket-Version: 13
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.6
+Sec-WebSocket-Key: cr4ybV4AfdzERfeTpDmCaw==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+
+
+[0][2016-07-22 16:55:18]4 added
+[0][2016-07-22 16:55:18]start listening
+[0][2016-07-22 16:55:28]6 added
+[0][2016-07-22 17:01:03]GET / HTTP/1.1
+Host: 192.168.132.128:9999
+Connection: Upgrade
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade: websocket
+Origin: file://
+Sec-WebSocket-Version: 13
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.6
+Sec-WebSocket-Key: TOaDGegirh1q2LppAX5qLQ==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+
+
+[0][2016-07-22 17:01:03]6 closed
+[0][2016-07-22 17:02:25]4 added
+[0][2016-07-22 17:02:25]start listening
+[0][2016-07-22 17:02:32]6 added
+[0][2016-07-22 17:04:30]4 added
+[0][2016-07-22 17:04:30]start listening

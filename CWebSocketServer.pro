@@ -7,8 +7,16 @@ OBJECTS_DIR = ./obj
 
 SOURCES += main.cpp \
     cserver.cpp \
-    clog.cpp
+    clog.cpp \
+    crequest.cpp \
+    cresponse.cpp \
+    base64.cpp \
+    sha1.cpp
 
 HEADERS += \
     cserver.h \
-    clog.h
+    clog.h \
+    crequest.h \
+    cresponse.h \
+    base64.h \
+    sha1.h

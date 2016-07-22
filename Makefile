@@ -50,10 +50,14 @@ OBJECTS_DIR   = obj/
 
 SOURCES       = main.cpp \
 		cserver.cpp \
-		clog.cpp 
+		clog.cpp \
+		crequest.cpp \
+		cresponse.cpp 
 OBJECTS       = obj/main.o \
 		obj/cserver.o \
-		obj/clog.o
+		obj/clog.o \
+		obj/crequest.o \
+		obj/cresponse.o
 DIST          = ../../Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/common/unix.conf \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/common/linux.conf \
@@ -197,9 +201,13 @@ DIST          = ../../Qt5.7.0/5.7/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/features/yacc.prf \
 		../../Qt5.7.0/5.7/gcc_64/mkspecs/features/lex.prf \
 		CWebSocketServer.pro cserver.h \
-		clog.h main.cpp \
+		clog.h \
+		crequest.h \
+		cresponse.h main.cpp \
 		cserver.cpp \
-		clog.cpp
+		clog.cpp \
+		crequest.cpp \
+		cresponse.cpp
 QMAKE_TARGET  = CWebSocketServer
 DESTDIR       = 
 TARGET        = CWebSocketServer
@@ -545,11 +553,19 @@ obj/main.o: main.cpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/main.o main.cpp
 
 obj/cserver.o: cserver.cpp cserver.h \
+		crequest.h \
+		cresponse.h \
 		clog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/cserver.o cserver.cpp
 
 obj/clog.o: clog.cpp clog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/clog.o clog.cpp
+
+obj/crequest.o: crequest.cpp crequest.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/crequest.o crequest.cpp
+
+obj/cresponse.o: cresponse.cpp cresponse.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/cresponse.o cresponse.cpp
 
 ####### Install
 

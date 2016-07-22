@@ -1,9 +1,9 @@
 #include <iostream>
-
-using namespace std;
+#include "cserver.h"
 
 int main(int argc, char *argv[])
 {
-    cout << "Hello World!" << endl;
+    CServer *server = CServer::server();
+    server->run();
     return 0;
 }
