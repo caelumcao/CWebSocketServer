@@ -19,6 +19,8 @@ public:
 private:
     void init();
     void do_epoll();
+    void handle_accept();
+    void handle_client(int fd);
     void add_event(int fd);
     void delete_event(int fd);
 

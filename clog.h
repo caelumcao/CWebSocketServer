@@ -9,6 +9,7 @@ public:
     CLog();
     void log_msg(int priority, const char *fmt, ...);
     void log_exit(int priority, const char *fmt, ...);
+    void log_sys(int priority, const char *err);
 
     static CLog *log();
 

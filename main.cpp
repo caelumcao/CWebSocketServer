@@ -4,11 +4,13 @@
 #include "sha1.h"
 #include "base64.h"
 #include "netinet/in.h"
+#include "cprotocol.h"
 
 int main(int argc, char *argv[])
 {
     CServer *server = CServer::server();
     server->run();
+
 
 //    const char * MAGIC_KEY {"258EAFA5-E914-47DA-95CA-C5AB0DC85B11"};
 //    std::string key("dGhlIHNhbXBsZSBub25jZQ==");

@@ -1,4 +1,5 @@
 #include "cresponse.h"
+#include "cprotocol.h"
 #include "sha1.h"
 #include "base64.h"
 #include <unistd.h>
@@ -11,14 +12,16 @@ CResponse::CResponse()
 
 }
 
-int CResponse::process(int fd, const char *buf, unsigned int len)
+int CResponse::process(int fd, char *buf, unsigned int len)
 {
-
+    CProtocol cp;
+    cp.encode(buf, len);
+    return write(fd, buf, len);
 }
 
 int CResponse::handshark(int fd, const char *buf, unsigned int len)
 {
-    std::string key(buf);
+    std::string key(buf, len);
     key += MAGIC_KEY;
     SHA1 sha;
     unsigned int message_digest[5];
@@ -34,6 +37,5 @@ int CResponse::handshark(int fd, const char *buf, unsigned int len)
     msg.append("Sec-WebSocket-Accept: ");
     msg += (key + "\r\n");
     msg.append("Upgrade: websocket\r\n\r\n");
-    write(STDOUT_FILENO, msg.c_str(), msg.size());
     return write(fd, msg.c_str(), msg.size());
 }

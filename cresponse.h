@@ -6,7 +6,7 @@ class CResponse
 {
 public:
     CResponse();
-    int process(int fd, const char *buf, unsigned int len);
+    int process(int fd, char *buf, unsigned int len);
     int handshark(int fd, const char *buf, unsigned int len);
 
 private:

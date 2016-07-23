@@ -5,7 +5,7 @@
 #include <time.h>
 #include <string.h>
 #include <unistd.h>
-
+#include <errno.h>
 
 CLog *CLog::_log = nullptr;
 
@@ -33,6 +33,11 @@ void CLog::log_exit(int priority, const char *fmt, ...)
     log_base(priority, fmt, ap);
     va_end(ap);
     exit(1);
+}
+
+void CLog::log_sys(int priority, const char *err)
+{
+    log_exit(priority, "%s: %s", err, strerror(errno));
 }
 
 CLog *CLog::log()

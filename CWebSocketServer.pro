@@ -11,7 +11,8 @@ SOURCES += main.cpp \
     crequest.cpp \
     cresponse.cpp \
     base64.cpp \
-    sha1.cpp
+    sha1.cpp \
+    cprotocol.cpp
 
 HEADERS += \
     cserver.h \
@@ -19,4 +20,5 @@ HEADERS += \
     crequest.h \
     cresponse.h \
     base64.h \
-    sha1.h
+    sha1.h \
+    cprotocol.h

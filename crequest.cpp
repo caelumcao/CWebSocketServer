@@ -1,18 +1,17 @@
 #include "crequest.h"
+#include "cprotocol.h"
 #include <unistd.h>
 #include <errno.h>
 #include <string.h>
 
 CRequest::CRequest()
 {
-
 }
 
 int CRequest::process(int fd, char *buf, unsigned int maxsize, bool b_conn)
 {
     bzero(buf, maxsize);
     int nreads;
-
     if (b_conn) {
         while (true) {
             nreads = read(fd, buf, maxsize);
@@ -21,8 +20,18 @@ int CRequest::process(int fd, char *buf, unsigned int maxsize, bool b_conn)
             else
                 break;
         }
+        if (nreads > 0) {
+            CProtocol cp;
+            cp.decode(buf, nreads);
+            if (cp.opcode() != 0x1)
+                return -2;
+            nreads = cp.payload_length();
+            strncpy(buf, cp.payload_data(), nreads);
+            buf[nreads] = '\0';
+        }
         return nreads;
     } else {
+        initbuf();
         while (*buf != '\r') {
             if ((nreads = readline(fd, buf, maxsize)) <= 0)
                 return nreads;
@@ -41,9 +50,6 @@ int CRequest::process(int fd, char *buf, unsigned int maxsize, bool b_conn)
 
 int CRequest::my_read(int fd, char *ptr)
 {
-    static int read_cnt = 0;
-    static char *read_ptr;
-    static char read_buf[MAXLINE];
     if (read_cnt <= 0) {
         while (true) {
             if ((read_cnt = read(fd, read_buf, sizeof(read_buf))) < 0) {
@@ -60,7 +66,7 @@ int CRequest::my_read(int fd, char *ptr)
     }
     read_cnt--;
     *ptr = *read_ptr++;
-    return(1);
+    return 1;
 }
 
 int CRequest::readline(int fd, void *vptr, unsigned int maxlen)
@@ -79,10 +85,17 @@ int CRequest::readline(int fd, void *vptr, unsigned int maxlen)
             else
                 break;
         } else {
-            return(-1);
+            return -1;
         }
     }
     *ptr = 0;
     return n;
+}
+
+void CRequest::initbuf()
+{
+    bzero(read_buf, MAXLINE);
+    read_cnt = 0;
+    read_ptr = read_buf;
 }
 
