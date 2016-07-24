@@ -18,7 +18,11 @@ void CProtocol::encode(char *data, unsigned int &len)
         memset(data + pos, len, 1);
         ++pos;
     } else {
-
+        memset(data + pos, 126, 1);
+        ++pos;
+        u_int16_t length = htons(len);
+        memcpy(data + pos, &length, 2);
+        pos += 2;
     }
     memcpy(data + pos, _payload_data, len);
     len = pos + len;

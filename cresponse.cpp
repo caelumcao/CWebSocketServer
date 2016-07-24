@@ -12,11 +12,14 @@ CResponse::CResponse()
 
 }
 
-int CResponse::process(int fd, char *buf, unsigned int len)
+int CResponse::process(int fd, const char *buf, unsigned int len)
 {
+    char msg[MAXLINE];
+    strncpy(msg, buf, len);
+    msg[len] = '\0';
     CProtocol cp;
-    cp.encode(buf, len);
-    return write(fd, buf, len);
+    cp.encode(msg, len);
+    return write(fd, msg, len);
 }
 
 int CResponse::handshark(int fd, const char *buf, unsigned int len)
